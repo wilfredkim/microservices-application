@@ -1,4 +1,9 @@
+server:
+  port: 7476
+
 spring:
+  application:
+    name: CONFIG-SERVER
   cloud:
     config:
       server:

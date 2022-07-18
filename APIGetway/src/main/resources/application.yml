@@ -9,20 +9,20 @@ spring:
         - id: CUSTOMER_SERVICE
           uri: lb://CUSTOMER_SERVICE
           predicates:
-            - Path=/v2/customers/**
+           - Path=/customers/**
           filters:
-            - name: CUSTOMER_SERVICE
+
               args:
-                name: CUSTOMER_SERVICE
+                name: fallbackcmd
                 fallbackUri: forward:/customerServiceFallBack
         - id: DEPARTMENT_SERVICE
           uri: lb://DEPARTMENT_SERVICE
           predicates:
-            - Path=/vi/departments/**
+           - Path=/departments/**
           filters:
-            - name: DEPARTMENT_SERVICE
+
               args:
-                name: DEPARTMENT_SERVICE
+                name: fallbackcmd
                 fallbackUri: forward:/departmentServiceFallBack
 
 
@@ -44,7 +44,6 @@ management:
     web:
       exposure:
         include: hystrix.stream
-
 
 
 
