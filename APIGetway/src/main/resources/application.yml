@@ -1,0 +1,51 @@
+server:
+  port: 7474
+spring:
+  application:
+    name: API_GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: CUSTOMER_SERVICE
+          uri: lb://CUSTOMER_SERVICE
+          predicates:
+            - Path=/v2/customers/**
+          filters:
+            - name: CUSTOMER_SERVICE
+              args:
+                name: CUSTOMER_SERVICE
+                fallbackUri: forward:/customerServiceFallBack
+        - id: DEPARTMENT_SERVICE
+          uri: lb://DEPARTMENT_SERVICE
+          predicates:
+            - Path=/vi/departments/**
+          filters:
+            - name: DEPARTMENT_SERVICE
+              args:
+                name: DEPARTMENT_SERVICE
+                fallbackUri: forward:/departmentServiceFallBack
+
+
+
+
+
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
+
+
+
+

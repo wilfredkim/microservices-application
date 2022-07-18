@@ -1,0 +1,1 @@
+* [Endpoints documentation](http://localhost:7463/swagger-ui/index.html)

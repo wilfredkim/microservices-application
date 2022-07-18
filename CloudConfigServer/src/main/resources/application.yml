@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/wilfredkim/config-server
+          clone-on-start: true
+    compatibility-verifier:
+      compatible-boot-versions:
